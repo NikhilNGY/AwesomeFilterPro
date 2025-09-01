@@ -65,12 +65,12 @@ LOG_STR += f"Your current IMDB template is {IMDB_TEMPLATE}"
 
 UPSTREAM_REPO = environ.get('UPSTREAM_REPO', 'https://t.me/KR_PICTURE')
 
-AUTO_DELETE_SECONDS = int(environ.get('AUTO_DELETE_SECONDS', 300))
+AUTO_DELETE_SECONDS = int(environ.get('AUTO_DELETE_SECONDS', 1800))
 AUTO_DELETE = environ.get('AUTO_DELETE', True)
 if AUTO_DELETE == "True":
     AUTO_DELETE = True
 
 #Sample
-SHORTNER_SITE = "vplink.in"
-SHORTNER_API = "ab42d0b5656f5c774f800dacb6739342b6f094aa"
+SHORTNER_SITE = ""
+SHORTNER_API = ""
 
