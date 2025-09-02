@@ -49,7 +49,7 @@ temp = TempState()
 
 async def is_subscribed(bot, query):
     """
-    Check if a user is subscribed to a particular channel.
+    ನಮಸ್ಕಾರ 🙏  ,\n \nಚಲನಚಿತ್ರವನ್ನು ಪಡೆಯಲು "JOIN CHANNEL" ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ ಮತ್ತು ಚಾನಲ್‌ನಲ್ಲಿ ಸೇರಿಕೊಳ್ಳಿ.\n \n────── • ◆ • ──────\n \nYou Need to Join My Channel to Receive the Movie file. CLICK 👇👇
     """
     try:
         user = await bot.get_chat_member(AUTH_CHANNEL, query.from_user.id)
