@@ -43,6 +43,8 @@ class TempState:
     U_NAME = None
     B_NAME = None
     SETTINGS = {}
+# At the end of utils.py
+temp = TempState()
 
 
 async def is_subscribed(bot, query):
