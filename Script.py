@@ -29,6 +29,16 @@ class script(object):
 
     ADMIN_TXT = """<strong><blockquote>Aɴʏ Iꜱꜱᴜᴇꜱ Mᴏᴠɪᴇ Fɪʟᴇꜱ Cᴏɴᴛᴀᴄᴛ Oᴡɴᴇʀ\n      \n🍁 Oᴡɴᴇʀ: <a href=https://t.me/Nikhil5757h> Ｄ Ｉ Ｃ Ｔ Ａ ＴＯ Ｒ</a></blockquote></strong>"""
 
+   CUSTOMFILE_CAPTION = """<strong><blockquote>{filename}
+
+Mᴏʀᴇ Mᴏᴠɪᴇꜱ Jᴏɪɴ @sandalwood_kannada_moviesz
+ 
+Tᴇᴀᴍ : @KR_Picture
+ 
+Uᴘʟᴏᴀᴅᴇᴅ Bʏ 👉
+https://t.me/+X5CwwZB-jV9iODc1
+https://t.me/+X5CwwZB-jV9iODc1</blockquote></strong>"""
+    
     STATUS_TXT = """<b><u>Cᴜʀʀᴇɴᴛ Dᴀᴛᴀʙᴀsᴇ Sᴛᴀᴛᴜs</b></u>
     
 📑 ғɪʟᴇs sᴀᴠᴇᴅ: <code>{}</code>
