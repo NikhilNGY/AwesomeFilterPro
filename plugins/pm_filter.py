@@ -445,7 +445,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton('• Mᴏᴠɪᴇ Gʀᴏᴜᴘ •', url=f'https://t.me/+x6OfRDdUPrUwZTZl'),
                 InlineKeyboardButton('• Mᴀɪɴ Cʜᴀɴɴᴇʟ •', url=f'https://t.me/+fDkIGNmk5BU5ODVl')
             ],[
-                InlineKeyboardButton('• BoT Status •', callback_data='about'),
+                InlineKeyboardButton('• BoT Status •', callback_data='stats'),
              ],[
             InlineKeyboardButton('🔐 ᴄʟᴏsᴇ 🔐', callback_data='close_data')
         ]]
@@ -480,7 +480,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton('• Mᴏᴠɪᴇ Gʀᴏᴜᴘ •', url=f'https://t.me/+x6OfRDdUPrUwZTZl'),
                 InlineKeyboardButton('• Mᴀɪɴ Cʜᴀɴɴᴇʟ •', url=f'https://t.me/+fDkIGNmk5BU5ODVl')
             ],[
-                InlineKeyboardButton('• BoT Status •', callback_data='about'),
+                InlineKeyboardButton('• BoT Status •', callback_data='stats'),
         ],[
             InlineKeyboardButton('🔐 ᴄʟᴏsᴇ 🔐', callback_data='close_data')
         ]]
