@@ -355,94 +355,104 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 "ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴅᴇᴛᴀɪʟs ;\n\n",
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
-    elif "alertmessage" in query.data:
-        grp_id = query.message.chat.id
-        i = query.data.split(":")[1]
-        keyword = query.data.split(":")[2]
-        reply_text, btn, alerts, fileid = await find_filter(grp_id, keyword)
-        if alerts is not None:
-            alerts = ast.literal_eval(alerts)
-            alert = alerts[int(i)]
-            alert = alert.replace("\\n", "\n").replace("\\t", "\t")
-            await query.answer(alert, show_alert=True)
-        if query.data.startswith("file"):
-            ident, file_id = query.data.split("#")
-            files_ = await get_file_details(file_id)
-            if not files_:
-                return await query.answer('ɴᴏ sᴜᴄʜ ғɪʟᴇ ᴇxɪᴛs.')
+       elif "alertmessage" in query.data:
+    grp_id = query.message.chat.id
+    i = query.data.split(":")[1]
+    keyword = query.data.split(":")[2]
+    reply_text, btn, alerts, fileid = await find_filter(grp_id, keyword)
 
-           files = files_[0]
-           title = files.file_name
-           size = get_size(files.file_size)
-           f_caption = files.caption 
-           settings = await 
-       get_settings(query.message.chat.id)
+    if alerts is not None:
+        alerts = ast.literal_eval(alerts)
+        alert = alerts[int(i)]
+        alert = alert.replace("\\n", "\n").replace("\\t", "\t")
+        await query.answer(alert, show_alert=True)
 
-      if CUSTOM_FILE_CAPTION:
-          try:
-              f_caption = CUSTOM_FILE_CAPTION.format(
-                  filename='' if title is None else title,
-                  file_size='' if size is None else size,
-                  file_caption='' if f_caption is None else f_caption
-             )
-         except Exception as e:
-             logger.exception(e)
- 
-     if f_caption is None:
-         f_caption = title or "File"
+    if query.data.startswith("file"):
+        ident, file_id = query.data.split("#")
+        files_ = await get_file_details(file_id)
+        if not files_:
+            return await query.answer('ɴᴏ sᴜᴄʜ ғɪʟᴇ ᴇxɪᴛs.')
 
-     try:
-         if AUTH_CHANNEL and not await is_subscribed(client, query):
-             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
-             return
-         elif settings.get('botpm'):
-             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
-             return
-         else:
-             await client.send_cached_media(
-                 chat_id=query.from_user.id,
-                 file_id=file_id,
-                 caption=f_caption,
-                 protect_content=(ident == "filep")
-             )
-     except Exception as e:
-         logger.exception(e)
-                await query.answer('ᴄʜᴇᴄᴋ ᴘᴍ ɪ ʜᴀᴠᴇ sᴇɴᴅ ғɪʟᴇs', show_alert=True)
+        files = files_[0]
+        title = files.file_name
+        size = get_size(files.file_size)
+        f_caption = files.caption
+        settings = await get_settings(query.message.chat.id)
+
+        # Use CUSTOM_FILE_CAPTION if available
+        if CUSTOM_FILE_CAPTION:
+            try:
+                f_caption = CUSTOM_FILE_CAPTION.format(
+                    filename='' if title is None else title,
+                    file_size='' if size is None else size,
+                    file_caption='' if f_caption is None else f_caption
+                )
+            except Exception as e:
+                logger.exception(e)
+
+        if f_caption is None:
+            f_caption = title or "File"
+
+        try:
+            if AUTH_CHANNEL and not await is_subscribed(client, query):
+                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                return
+            elif settings.get('botpm'):
+                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                return
+            else:
+                await client.send_cached_media(
+                    chat_id=query.from_user.id,
+                    file_id=file_id,
+                    caption=f_caption,
+                    protect_content=(ident == "filep")
+                )
         except UserIsBlocked:
             await query.answer('ᴜɴʙʟᴏᴄᴋ ᴛʜᴇ ʙᴏᴛ ᴍᴀɴʜ !', show_alert=True)
         except PeerIdInvalid:
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
         except Exception as e:
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
-    elif query.data.startswith("checksub"):
-        if AUTH_CHANNEL and not await is_subscribed(client, query):
-            await query.answer("I Lɪᴋᴇ Yᴏᴜʀ Sᴍᴀʀᴛɴᴇꜱꜱ, Bᴜᴛ Dᴏɴ'ᴛ Bᴇ Oᴠᴇʀꜱᴍᴀʀᴛ 😒", show_alert=True)
-            return
-        ident, file_id = query.data.split("#")
-        files_ = await get_file_details(file_id)
-        if not files_:
-            return await query.answer('ɴᴏ sᴜᴄʜ ғɪʟᴇ ᴇxɪsᴛs.')
-        files = files_[0]
-        title = files.file_name
-        size = get_size(files.file_size)
-        f_caption = files.caption
-        if CUSTOM_FILE_CAPTION:
-            try:
-                f_caption = CUSTOM_FILE_CAPTION.format(file_name='' if title is None else title,
-                                                       file_size='' if size is None else size,
-                                                       file_caption='' if f_caption is None else f_caption)
-            except Exception as e:
-                logger.exception(e)
-                f_caption = f_caption
-        if f_caption is None:
-            f_caption = f"{title}"
-        await query.answer()
-        await client.send_cached_media(
-            chat_id=query.from_user.id,
-            file_id=file_id,
-            caption=f_caption,
-            protect_content=True if ident == 'checksubp' else False
+        else:
+            await query.answer('ᴄʜᴇᴄᴋ ᴘᴍ ɪ ʜᴀᴠᴇ sᴇɴᴅ ғɪʟᴇs', show_alert=True)
+
+elif query.data.startswith("checksub"):
+    if AUTH_CHANNEL and not await is_subscribed(client, query):
+        await query.answer(
+            "I Lɪᴋᴇ Yᴏᴜʀ Sᴍᴀʀᴛɴᴇꜱꜱ, Bᴜᴛ Dᴏɴ'ᴛ Bᴇ Oᴠᴇʀꜱᴍᴀʀᴛ 😒", show_alert=True
         )
+        return
+
+    ident, file_id = query.data.split("#")
+    files_ = await get_file_details(file_id)
+    if not files_:
+        return await query.answer('ɴᴏ sᴜᴄʜ ғɪʟᴇ ᴇxɪsᴛs.')
+
+    files = files_[0]
+    title = files.file_name
+    size = get_size(files.file_size)
+    f_caption = files.caption
+
+    if CUSTOM_FILE_CAPTION:
+        try:
+            f_caption = CUSTOM_FILE_CAPTION.format(
+                filename='' if title is None else title,
+                file_size='' if size is None else size,
+                file_caption='' if f_caption is None else f_caption
+            )
+        except Exception as e:
+            logger.exception(e)
+
+    if f_caption is None:
+        f_caption = title or "File"
+
+    await query.answer()
+    await client.send_cached_media(
+        chat_id=query.from_user.id,
+        file_id=file_id,
+        caption=f_caption,
+        protect_content=(ident == 'checksubp')
+    )
     elif query.data == "pages":
         await query.answer()
     elif query.data == "start":
