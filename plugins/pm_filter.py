@@ -377,7 +377,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
     f_caption = files.caption
     settings = await get_settings(query.message.chat.id)
 
-    # Use CUSTOM_FILE_CAPTION if available
     if CUSTOM_FILE_CAPTION:
         try:
             f_caption = CUSTOM_FILE_CAPTION.format(
@@ -388,20 +387,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
         except Exception as e:
             logger.exception(e)
 
-    # Fallback if caption is still None
     if f_caption is None:
         f_caption = title or "File"
 
     try:
-        # Check channel subscription
         if AUTH_CHANNEL and not await is_subscribed(client, query):
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
             return
-        # Send in PM if botpm is enabled
         elif settings.get('botpm'):
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
             return
-        # Otherwise, send file directly
         else:
             await client.send_cached_media(
                 chat_id=query.from_user.id,
