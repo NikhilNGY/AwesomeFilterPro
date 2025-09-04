@@ -23,7 +23,7 @@ class script(object):
     EXTRAMOD_TXT = HELP_TXT
     ADMIN_TXT = HELP_TXT
 
-    CUSTOM_FILE_CAPTION = (
+    CAPTION = (
         "<strong><blockquote>Mᴏʀᴇ Mᴏᴠɪᴇꜱ Jᴏɪɴ @sandalwood_kannada_moviesz\n \nTᴇᴀᴍ : @KR_Picture\n \nUᴘʟᴏᴀᴅᴇᴅ Bʏ 👉\nhttps://t.me/+X5CwwZB-jV9iODc1\nhttps://t.me/+X5CwwZB-jV9iODc1</blockquote></strong>"
     )
 
