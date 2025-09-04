@@ -43,3 +43,30 @@ class script(object):
 ɪᴅ ♥️- <code>{}</code>
 ɴᴀᴍᴇ 💥- {} 
 """
+
+BAD_WORDS = {
+    "@THE_DD_MOVIEZ",
+    "@RKN_MOVIEZ1",
+    "@MG_Movie",
+    "@KnMoviez",
+    "@AddaFiles",
+    "@adda_files",
+    "@MGBMFliX",
+    "[DRN]",
+    "Sandalwood",
+    "@MoviezAddaKA",
+    "@AAFliX",
+    "@KA_HUB",
+    "@Kannada_Cine_Hub",
+    "@knmoviez",
+    "@AK_Kiccha1",
+    "[MG]",
+    "@Kannada_Cineflix",
+    "@DM_Entertainment" ,
+    "@nmk_backup7" ,
+    "@Kannada_CineHub" ,
+    "[MG]" ,
+    "@Kiccha_Creations" ,
+    "@TG_Movies4u" ,
+    "@TG_MOVIES4U"
+} # Set of bad words to filter out
